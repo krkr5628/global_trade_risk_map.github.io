@@ -1,0 +1,1 @@
+var e=new Set([`http:`,`https:`]);function t(t){let n=String(t??``).trim();if(n)try{let t=typeof window<`u`?window.location.origin:`https://gtrm.local`,r=new URL(n,t);return e.has(r.protocol)?r.href:void 0}catch{return}}export{t};
