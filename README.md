@@ -1,7 +1,57 @@
 # Global Trade Risk Map
 
-Public static frontend for the Global Trade Risk Map MVP.
+한국 수출입 기업이 마주하는 **글로벌 무역 리스크를 공개 데이터로 연결·시각화**하는 웹 인텔리전스 데스크입니다.
 
-- Frontend: React/Vite static build
-- API gateway: https://gtrm-api.my-worker-data.workers.dev
-- Backend, data pipeline, internal notes, and deployment runbooks are intentionally not included in this public repository.
+**▶ 라이브 데모: https://krkr5628.github.io/global_trade_risk_map.github.io/**
+
+이 저장소는 위 주소로 서비스되는 **정적 프론트엔드 빌드(React/Vite)** 를 담고 있습니다.
+
+---
+
+## 목적
+
+뉴스, 공시, 공공 통계, 국제 기업정보 등 흩어져 있는 공개 데이터를 **기업 → 품목(HS) → 국가 → 리스크 이벤트**의 연결 그래프로 엮어, 한국 무역기업의 교역 리스크를 한 화면에서 근거와 함께 파악할 수 있게 하는 것이 목표입니다.
+
+- 특정 기업이 어떤 국가·품목에 노출되어 있는지
+- 그 국가/경로에서 어떤 리스크 이벤트·규제·수출통제가 발생 중인지
+- 단기·중기·장기로 어느 정도 영향이 예상되는지
+
+를 **원천 데이터 근거(evidence)** 와 함께 제시합니다.
+
+## 무엇을 하나 (주요 화면)
+
+- **Trade Risk Map** — 국가별 리스크 이벤트·공개 지표·HS 교역 흐름을 지도와 랭킹으로 표시
+- **News & Signals** — 글로벌 뉴스 기반 리스크 이벤트, 국가 요약, 기업별 영향 벡터
+- **Korea Company Exposure** — DART 계약/공시 기반 기업 노출과 HS 기반 후보 국가 노출
+- **Risk Ontology Graph** — 기업–HS–국가–이벤트–리스크팩터–영향 경로를 그래프와 근거 테이블로 표시
+- **Impact Reporting** — 선택 기업의 단기/중기/장기 영향 점수와 top 영향 경로, 근거 리포트
+- **Route Corridor Risk** — 부산발 해상 16경로·인천발 항공 6경로와 주요 해상 chokepoint에 대한 경로 리스크 노출 분석
+- **Public Data Radar** — 데이터/근거 상태와 공개 데이터 소스 준비 현황
+
+> 참고: 공급망·경로 노출은 확정 사실이 아니라 **공개 데이터 기반 후보(candidate) 신호**로 관리하며, 화면에 그 한계를 명시합니다.
+
+## 사용한 데이터
+
+모두 **공개(공공/오픈) 데이터**를 사용합니다.
+
+| 구분 | 소스 |
+| --- | --- |
+| 무역·리스크 이벤트 | 글로벌 뉴스 이벤트 데이터(GDELT) |
+| 국내 기업 공시 | 금융감독원 DART(계약·공시) |
+| 무역보험·수출입 | K-SURE 국가/업종 위험지수 |
+| 해외시장·진출기업 | KOTRA 해외시장뉴스, 해외 한국기업 디렉토리, 국별 수입규제 |
+| 수출통제 | 전략물자관리원 HSK 연계표 |
+| 통계·거시 | 통계청 KOSIS 수출입, 한국은행 ECOS(환율·금리) |
+| 국제 지표 | World Bank, US Census HS 무역, IMF PortWatch 해상 chokepoint |
+| 글로벌 기업정보 | GLEIF LEI, 미국 SEC EDGAR, 일본 국세청 법인번호·EDINET |
+
+각 데이터는 정규화 후 기업–품목–국가 축으로 결합되어 리스크 점수와 근거 리포트에 반영됩니다.
+
+## 구성
+
+- **Frontend (이 저장소)**: React/Vite 정적 빌드. GitHub Pages로 배포됩니다.
+- **Backend / 데이터 파이프라인**: 공개 데이터 수집·정규화·리스크 점수 산출 로직으로, 이 공개 저장소에는 포함되지 않습니다.
+
+## 데이터 출처 및 라이선스
+
+각 데이터의 권리는 원 제공기관에 있으며, 본 프로젝트는 공개된 이용 조건에 따라 분석·시각화 목적으로 활용합니다. 표시되는 리스크 점수·영향 벡터는 분석적 추정치이며 투자·거래 판단의 근거로 보증되지 않습니다.
