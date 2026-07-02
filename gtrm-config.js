@@ -1,1 +1,1 @@
-window.__GTRM_API_BASE__ = 'https://gtrm-api.my-worker-data.workers.dev';
+window.__GTRM_API_BASE__ = window.__GTRM_API_BASE__ || ''
